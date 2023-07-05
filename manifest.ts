@@ -1,17 +1,17 @@
-import { Manifest } from 'https://deno.land/x/robo_arkiver@v0.4.15/mod.ts'
-import { VaultSnapshot } from './entities/vault.ts'
-import { snapshotVault } from './handlers/vault.ts'
+import { Manifest } from "https://deno.land/x/robo_arkiver@v0.4.7/mod.ts";
+import { hourDataHandler } from "./handlers/hourdata.ts";
+import { HourData } from "./entities/hourdata.ts";
 
-const manifest = new Manifest('yearn-vaults')
 
-manifest
-  .addEntity(VaultSnapshot)
-  .addChain('mainnet')
-  .addBlockHandler({
-    blockInterval: 1000,
-    startBlockHeight: 12790000n,
-    handler: snapshotVault,
-  })
+// LUSD/WEH Pair Data
+const startBlockHeight = 100000000n
 
-export default manifest
-  .build()
+const manifest = new Manifest('aperture');
+const arbitrum = manifest
+	.addEntities([HourData])
+	.chain("arbitrum")
+
+arbitrum
+	.addBlockHandler({ blockInterval: 100, startBlockHeight, handler: hourDataHandler })
+
+export default manifest.build();
