@@ -1,5 +1,5 @@
 
-# AAVE Arkive Job
+# Aperture Arkive
 
 This arkive job creates hourly snaphots of all AAVE Lending Pools on Polygon. It can be extended to support all EVM networks supported by Arkiver.
 
@@ -31,7 +31,7 @@ my-arkive
 - `/deps.ts` - Contains the dependencies for your Arkive. This is where you
   import any third-party libraries and use them throughout your Arkive.
 
-  ## Run your Arkive locally
+## Run your Arkive locally
 
 To run your Arkive locally, run the following command:
 
