@@ -4,6 +4,7 @@ import { HourData } from "../entities/hourdata.ts";
 import { glpManagerAbi } from "../abis/GLPManagerAbi.ts";
 import erc20 from "../abis/erc20.ts";
 import { ChainlinkOracleAbi } from "../abis/ChainlinkOracleAbi.ts";
+import { Trade } from "../entities/trade.ts";
 
 const HOUR = 60 * 60
 
@@ -44,7 +45,8 @@ export const hourDataHandler: BlockHandler = async ({ block, client, store }: {
 			contracts: [
 				{ abi: glpManagerAbi, address: mgr, functionName: 'getAum', args: [true] },
 				{ abi: erc20, address: glpToken, functionName: 'totalSupply' },
-				{ abi: ChainlinkOracleAbi, address: ethOracleAddress, functionName: "latestAnswer" }
+				{ abi: ChainlinkOracleAbi, address: ethOracleAddress, functionName: "latestAnswer" },
+				 // { abi: GlpRewardTracker, address: '', functionName: "cumulativeRewardPerToken" }, Something like this!!! Reward Tracker Address: 0x4e971a87900b931fF39d1Aad67697F49835400b6
 			],
 			blockNumber: block.number!,
 		})
@@ -55,6 +57,7 @@ export const hourDataHandler: BlockHandler = async ({ block, client, store }: {
 
 		const rec = new HourData({
 			timestamp: nowHour,
+			// Also store total supply. You'll need to convert to float 
 			glpPrice,
 			ethPrice,
 		})
