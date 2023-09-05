@@ -8,7 +8,7 @@ import { Trade } from "./entities/trade.ts";
 
 
 // LUSD/WEH Pair Data
-const startBlockHeight = 54905918n
+const startBlockHeight = 	218203n
 
 const manifest = new Manifest('aperture');
 const arbitrum = manifest
@@ -20,7 +20,7 @@ arbitrum
 
 arbitrum
   .addContract('OptionMarket', OptionMarketAbi)
-  .addSources({ '0x919E5e0C096002cb8a21397D724C4e3EbE77bC15': 54905918n })
+  .addSources({ '0x919E5e0C096002cb8a21397D724C4e3EbE77bC15': 218203n }) // 54905918n 
   .addEventHandlers({ 'Trade': onTrade })
 
 export default manifest.build();
