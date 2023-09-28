@@ -7,7 +7,7 @@ import { Univ2RouterAbi } from "../abis/Univ2RouterAbi.ts";
 import erc20 from "../abis/erc20.ts";
 import { ChainlinkOracleAbi } from "../abis/ChainlinkOracleAbi.ts";
 
-const HOUR = 60 * 60
+const HOUR = 60 * 60 * 4
 
 const GLP_PRICE_DECIMALS = 30
 const STANDARD_DECIMALS = 18
@@ -34,7 +34,7 @@ export const hourDataHandler: BlockHandler = async ({ block, client, store }: {
 	const last = await HourData.findOne({}).sort({ timestamp: -1 })
 	const lastHour = last?.timestamp ?? (nearestHour(now) - HOUR)
 
-	const isNewManager = block.number! > 40559781n
+	const isNewManager = block.number! > 7654800n
 	const mgr = (isNewManager ? '0x3963FfC9dff443c2A94f21b129D429891E32ec18' : '0x321F653eED006AD1C29D174e17d96351BDe22649') as Address // Use the new one after it was deployed
 	const glpToken = '0x4277f8F2c384827B5273592FF7CeBd9f2C1ac258' as Address
 	const ethOracleAddress = '0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612' // https://docs.chain.link/data-feeds/price-feeds/addresses?network=arbitrum
