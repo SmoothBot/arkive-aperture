@@ -34,7 +34,7 @@ export const hourDataHandler: BlockHandler = async ({ block, client, store }: {
 	const last = await HourData.findOne({}).sort({ timestamp: -1 })
 	const lastHour = last?.timestamp ?? (nearestHour(now) - HOUR)
 
-	const isNewManager = block.number! > 7654800n
+	const isNewManager = block.number! > 40559781n
 	const mgr = (isNewManager ? '0x3963FfC9dff443c2A94f21b129D429891E32ec18' : '0x321F653eED006AD1C29D174e17d96351BDe22649') as Address // Use the new one after it was deployed
 	const glpToken = '0x4277f8F2c384827B5273592FF7CeBd9f2C1ac258' as Address
 	const ethOracleAddress = '0x639Fe6ab55C921f74e7fac1ee960C0B6293ba612' // https://docs.chain.link/data-feeds/price-feeds/addresses?network=arbitrum
